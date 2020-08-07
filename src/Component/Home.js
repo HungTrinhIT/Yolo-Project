@@ -34,6 +34,9 @@ export default class Home extends Component {
           this.setState({
             outputImage: res.data,
           });
+        })
+        .catch((err) => {
+          alert(err.message);
         });
     }
   };
@@ -51,7 +54,10 @@ export default class Home extends Component {
           <h5>
             <strong>Import image you want to predict</strong>
           </h5>
-          <form onSubmit={this.fileUploadHandler} className="border-bottom pb-2">
+          <form
+            onSubmit={this.fileUploadHandler}
+            className="border-bottom pb-2"
+          >
             <label className="mr-4">Select image:</label>
             <input
               type="file"
