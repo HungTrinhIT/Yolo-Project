@@ -22,15 +22,10 @@ export default class Home extends Component {
     } else {
       const fd = new FormData();
       fd.append("image", this.state.selectedImageData);
-      console.log(this.state);
       axios
-        .post(
-          `http://0.0.0.0:5000/api/predict`,
-          fd,
-          {responseType: 'blob'}
-        )
+        .post(`http://0.0.0.0:5000/api/predict`, fd, { responseType: "blob" })
         .then((res) => {
-          console.log(res.data)
+          console.log(res.data);
           this.setState({
             outputImage: res.data,
           });
@@ -70,7 +65,7 @@ export default class Home extends Component {
               <button className="btn btn-success mr-3" type="submit">
                 Predict
               </button>
-              <button className="btn btn-danger" onClick={this.refreshHandler}>
+              <button className="btn btn-danger" type="btn" onClick={this.refreshHandler}>
                 Refresh
               </button>
             </div>
