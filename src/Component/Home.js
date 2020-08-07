@@ -21,17 +21,16 @@ export default class Home extends Component {
       alert("Please, Import image before predicting...");
     } else {
       const fd = new FormData();
-      fd.append("filename", this.state.selectedImageData);
+      fd.append("image", this.state.selectedImageData);
       console.log(this.state);
       axios
         .post(
           `http://0.0.0.0:5000/api/predict`,
-          {
-            body: { image: this.state.selectedImageData },
-          },
-          fd
+          fd,
+          {responseType: 'blob'}
         )
         .then((res) => {
+          console.log(res.data)
           this.setState({
             outputImage: res.data,
           });
