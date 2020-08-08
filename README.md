@@ -1,5 +1,5 @@
-##### Yolo-Project
-This is the final project of Machine Learning project 
+# Yolo-Project
+This is the final assignment of Machine Learning subject 
 
 ## INSTALLATION
 1. Install NodeJS enviroment: https://nodejs.org/en/  - version: 12.18.3
@@ -11,6 +11,7 @@ This is the final project of Machine Learning project
 ## Library:
 * React JS for building UI
 * Axios for using HTTP method: post: axios.post(`http://0.0.0.0:5000/api/predict`, fd, { responseType: "blob" })
+
 
 
 
