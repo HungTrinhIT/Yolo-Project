@@ -82,6 +82,7 @@ export default class Home extends Component {
                 onChange={this.onChangeHandler}
                 className="custom-file-input input-custom"
                 id="customFile"
+                onLoad={this.handleOnLoad}
               />
               <label className="custom-file-label" htmlFor="customFile">
                 {this.state.selectedImageData !== null

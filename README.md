@@ -1,7 +1,11 @@
 # Yolo-Project
 This is the final assignment of Machine Learning subject 
 
+
+
 ## INSTALLATION
+
+### Frontend side: 
 1. Install NodeJS enviroment: https://nodejs.org/en/  - version: 12.18.3
 2. Start project: 
 * cd Yolo-Project: 
