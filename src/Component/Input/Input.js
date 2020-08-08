@@ -8,7 +8,7 @@ export default class Input extends Component {
     else imageRender = "./images/input.png";
     return (
       <div className="input-img__wrapper">
-        <p>Input</p>
+        <p className="title">Input</p>
         <img src={imageRender} alt="img-predict" />
       </div>
     );

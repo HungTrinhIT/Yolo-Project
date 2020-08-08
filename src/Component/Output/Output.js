@@ -7,7 +7,7 @@ export default class Output extends Component {
     else imageRender = "./images/output.jpg";
     return (
       <div className="input-img__wrapper">
-        <p>Output</p>
+        <p className="title">Output</p>
         <img src={imageRender} alt="img-predict" />
       </div>
     );

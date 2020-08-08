@@ -37,35 +37,55 @@ export default class Home extends Component {
   };
 
   refreshHandler = () => {
-    this.setState({
-      selectedImage: null,
-      outputImage: null,
-    });
+    if (this.state.selectedImage === null) alert("No data to refresh!");
+    else {
+      this.setState({
+        selectedImage: null,
+        selectedImageData: null,
+        outputImage: null,
+      });
+    }
   };
   render() {
+    console.log("Name:", this.state.selectedImageData);
     return (
       <div>
         <div className="controller mb-4">
-          <h5>
+          <h4 className="mb-3">
             <strong>Import image you want to predict</strong>
-          </h5>
+          </h4>
           <form
             onSubmit={this.fileUploadHandler}
             className="border-bottom pb-2"
           >
-            <label className="mr-4">Select image:</label>
-            <input
-              type="file"
-              id="img_predict"
-              name="selectedImage"
-              onChange={this.onChangeHandler}
-            />
-            <br />
+            <label>
+              <i className="fa fa-download mr-4 import "></i>
+              Select image:
+            </label>
+            <div className="custom-file">
+              <input
+                type="file"
+                name="selectedImage"
+                onChange={this.onChangeHandler}
+                className="custom-file-input input-custom"
+                id="customFile"
+              />
+              <label className="custom-file-label" htmlFor="customFile">
+                {this.state.selectedImageData !== null
+                  ? `${this.state.selectedImageData.name}`
+                  : "Choose file"}
+              </label>
+            </div>
+
             <div className="mt-3">
               <button className="btn btn-success mr-3" type="submit">
                 Predict
               </button>
-              <button className="btn btn-danger" type="btn" onClick={this.refreshHandler}>
+              <button
+                className="btn btn-danger"
+                onClick={this.refreshHandler}
+                type="button"
+              >
                 Refresh
               </button>
             </div>

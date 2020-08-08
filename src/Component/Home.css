@@ -1,0 +1,14 @@
+.custom-file .custom-file-input {
+    width: 50%!important;
+}
+.title {
+  display: inline-block;
+  border-bottom: 1px solid rgb(42, 40, 48);
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.import {
+  color:rgb(42, 40, 48);
+  font-size: 24px;
+}
