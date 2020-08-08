@@ -7,9 +7,15 @@ export default class Input extends Component {
       imageRender = this.props.selectedImage;
     else imageRender = "./images/input.png";
     return (
-      <div className="input-img__wrapper">
+      <div>
         <p className="title">Input</p>
-        <img src={imageRender} alt="img-predict" />
+        <div className="input-img__wrapper">
+          <img
+            src={imageRender}
+            alt="img-predict"
+            onLoad={this.onImageLoaded}
+          />
+        </div>
       </div>
     );
   }

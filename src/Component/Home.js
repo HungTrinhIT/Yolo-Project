@@ -3,11 +3,13 @@ import "./Home.css";
 import axios from "axios";
 import Output from "./Output/Output";
 import Input from "./Input/Input";
+import Spinner from "./Spinner/Spinner";
 export default class Home extends Component {
   state = {
     selectedImage: null,
     selectedImageData: null,
     outputImage: null,
+    loaded: false,
   };
   onChangeHandler = (e) => {
     this.setState({
@@ -20,19 +22,31 @@ export default class Home extends Component {
     if (!this.state.selectedImage) {
       alert("Please, Import image before predicting...");
     } else {
-      const fd = new FormData();
-      fd.append("image", this.state.selectedImageData);
-      axios
-        .post(`http://0.0.0.0:5000/api/predict`, fd, { responseType: "blob" })
-        .then((res) => {
-          console.log(res.data);
-          this.setState({
-            outputImage: res.data,
-          });
-        })
-        .catch((err) => {
-          alert(err.message);
-        });
+      this.setState(
+        {
+          loaded: true,
+        },
+        () => {
+          const fd = new FormData();
+          fd.append("image", this.state.selectedImageData);
+          axios
+            .post(`http://0.0.0.0:5000/api/predict`, fd, {
+              responseType: "blob",
+            })
+            .then((res) => {
+              this.setState({
+                outputImage: res.data,
+                loaded: false,
+              });
+            })
+            .catch((err) => {
+              alert(err.message);
+              this.setState({
+                loaded: false,
+              });
+            });
+        }
+      );
     }
   };
 
@@ -47,7 +61,6 @@ export default class Home extends Component {
     }
   };
   render() {
-    console.log("Name:", this.state.selectedImageData);
     return (
       <div>
         <div className="controller mb-4">
@@ -92,11 +105,17 @@ export default class Home extends Component {
           </form>
         </div>
         <div className="row">
-          <div className="col-12 col-md-6 border-right">
+          <div className="col-12 col-md-6 border-right mb-3">
             <Input selectedImage={this.state.selectedImage} />
           </div>
-          <div className="col-12 col-md-6">
-            <Output outputImage={this.state.outputImage} />
+          <div className="col-12 col-md-6 mb-3">
+            {this.state.loaded === true ? (
+              <div className="image-container-overlay">
+                <Spinner />
+              </div>
+            ) : (
+              <Output outputImage={this.state.outputImage} />
+            )}
           </div>
         </div>
       </div>
